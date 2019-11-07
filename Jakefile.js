@@ -6,15 +6,19 @@
 
 	var semver = require("semver");
 	var jshint = require("simplebuild-jshint");
-	var
+	var karma = require("simplebuild-karma");
+	var karmaConfig = "karma.conf.js";
 
 	//**** General-purpose tasks
 	desc("Start the Karama server (run this first)");
-	task ("karma", function(){
+	task("karma", function () {
 		console.log("Starting Karam server: ");
-	});
+		karma.start({
+			configFile: karmaConfig
+		}, complete, fail);
+	}, { async: true });
 	desc("Default build");
-	task("default", ["version", "lint"], function () {
+	task("default", ["version", "lint", "test"], function () {
 		console.log("\n\nBUILD OK");
 	});
 
@@ -48,6 +52,14 @@
 			files: ["Jakefile.js", "src/**/*.js"],
 			options: lintOptions(),
 			globals: lintGlobals(),
+		}, complete, fail);
+	}, { async: true });
+
+	desc("Run tests");
+	task("test", function () {
+		console.log("Testing JS: ");
+		karma.run({
+			configFile: karmaConfig
 		}, complete, fail);
 	}, { async: true });
 
