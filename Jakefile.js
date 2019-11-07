@@ -1,7 +1,7 @@
 // Copyright (c) 2015 Titanium I.T. LLC. All rights reserved. For license, see "README" or "LICENSE" file.
 /* globals jake:false, desc:false, task:false, complete:false, fail:false */
 
-(function() {
+(function () {
 	"use strict";
 
 	var semver = require("semver");
@@ -10,12 +10,12 @@
 	//**** General-purpose tasks
 
 	desc("Default build");
-	task("default", [ "version", "lint" ], function() {
+	task("default", ["version", "lint"], function () {
 		console.log("\n\nBUILD OK");
 	});
 
 	desc("Run a localhost server");
-	task("run", function() {
+	task("run", function () {
 		jake.exec("node node_modules/http-server/bin/http-server src", { interactive: true }, complete);
 		console.log("Running http server!!");
 	});
@@ -24,7 +24,7 @@
 	//**** Supporting tasks
 
 	desc("Check Node version");
-	task("version", function() {
+	task("version", function () {
 		console.log("Checking Node version: .");
 
 		var packageJson = require("./package.json");
@@ -37,38 +37,46 @@
 	});
 
 	desc("Lint JavaScript code");
-	task("lint", function() {
+	task("lint", function () {
 		process.stdout.write("Linting JavaScript: ");
 
 		jshint.checkFiles({
 			files: ["Jakefile.js", "src/**/*.js"],
-			options: {
-				bitwise: true,
-				eqeqeq: true,
-				forin: true,
-				freeze: true,
-				futurehostile: true,
-				latedef: "nofunc",
-				noarg: true,
-				nocomma: true,
-				nonbsp: true,
-				nonew: true,
-				strict: true,
-				undef: true,
-
-				node: true,
-				browser: true
-			},
-			globals: {
-				//Mocha globals
-				describe: false,
-				it: false,
-				before: false,
-				after: false,
-				beforeEach: false,
-				afterEach: false
-			}
+			options: lintOptions(),
+			globals: lintGlobals(),
 		}, complete, fail);
 	}, { async: true });
 
+	function lintOptions() {
+		return {
+			bitwise: true,
+			eqeqeq: true,
+			forin: true,
+			freeze: true,
+			futurehostile: true,
+			latedef: "nofunc",
+			noarg: true,
+			nocomma: true,
+			nonbsp: true,
+			nonew: true,
+			strict: true,
+			undef: true,
+
+			node: true,
+			browser: true
+		};
+	}
+
+	function lintGlobals() {
+		return {
+			//Mocha globals
+			describe: false,
+			it: false,
+			before: false,
+			after: false,
+			beforeEach: false,
+			afterEach: false
+		};
+	}
+	
 }());
