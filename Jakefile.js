@@ -12,7 +12,7 @@
 	//**** General-purpose tasks
 	desc("Start the Karama server (run this first)");
 	task("karma", function () {
-		console.log("Starting Karam server: ");
+		console.log("Starting Karma server: ");
 		karma.start({
 			configFile: karmaConfig
 		}, complete, fail);
@@ -59,7 +59,11 @@
 	task("test", function () {
 		console.log("Testing JS: ");
 		karma.run({
-			configFile: karmaConfig
+			configFile: karmaConfig,
+			expectedBrowsers: [
+				"Chrome 78.0.3904 (Windows 10.0.0)",
+				"IE 11.0.0 (Windows 10.0.0)"
+			]
 		}, complete, fail);
 	}, { async: true });
 
