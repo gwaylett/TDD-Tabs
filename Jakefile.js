@@ -8,7 +8,10 @@
 	var jshint = require("simplebuild-jshint");
 
 	//**** General-purpose tasks
-
+	desc("Start the Karama server (run this first)");
+	task ("karma", function(){
+		console.log("Starting Karam server: ");
+	});
 	desc("Default build");
 	task("default", ["version", "lint"], function () {
 		console.log("\n\nBUILD OK");
@@ -78,5 +81,5 @@
 			afterEach: false
 		};
 	}
-	
+
 }());
