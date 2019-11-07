@@ -6,6 +6,7 @@
 
 	var semver = require("semver");
 	var jshint = require("simplebuild-jshint");
+	var
 
 	//**** General-purpose tasks
 	desc("Start the Karama server (run this first)");
