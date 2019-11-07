@@ -1,17 +1,41 @@
 (function () {
+
     "use strict";
 
     var assert = require("chai").assert;
 
-    // Basic addition
-    assert.equal(add(3,4), 7);
+    describe("Addition", function () {
 
-    // IEEE 754 float point
-    assert.equal(add(0.1, 0.2), 0.3)
+        it("adds positive numbers", function () {
+            assert.equal(add(3, 4), 7);
+
+        })
+
+        it("uses IEEE 754 Floating point", function () {
+            assert.equal(add(0.1, 0.2), 0.30000000000000004);
+        })
+    });
 
     function add(a, b) {
-            return a + b;
-        }
+        return a + b;
+    }
+
+
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // Try/Catch
     // var actual = add(3, 4);
@@ -36,5 +60,3 @@
     //     if (actual !== expected) throw new Error("Expected: " + expected + ", but got " + actual);
     // }
 
-
-})();

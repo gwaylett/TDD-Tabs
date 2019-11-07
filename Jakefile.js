@@ -17,7 +17,7 @@
 	desc("Run a localhost server");
 	task("run", function() {
 		jake.exec("node node_modules/http-server/bin/http-server src", { interactive: true }, complete);
-		console.log("Running http server");
+		console.log("Running http server!!");
 	});
 
 
