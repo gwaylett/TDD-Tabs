@@ -63,7 +63,8 @@
 			expectedBrowsers: [
 				"Chrome 78.0.3904 (Windows 10.0.0)",
 				"IE 11.0.0 (Windows 10.0.0)"
-			]
+			],
+			strict: !process.env.loose
 		}, complete, fail);
 	}, { async: true });
 
@@ -98,5 +99,6 @@
 			afterEach: false
 		};
 	}
+
 
 }());
