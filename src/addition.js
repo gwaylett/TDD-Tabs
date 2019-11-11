@@ -2,27 +2,27 @@
 
     "use strict";
 
-    describe("Addition", function () {
+    // describe("Addition", function () {
 
-        it("adds positive numbers", function () {
-            assertEqual(add(3, 4), 7);
-        });
+    //     it("adds positive numbers", function () {
+    //         assertEqual(add(3, 4), 7);
+    //     });
 
-        it("uses IEEE 754 Floating point", function () {
-            assertEqual(add(0.1, 0.2), 0.30000000000000004);
-        });
+    //     it("uses IEEE 754 Floating point", function () {
+    //         assertEqual(add(0.1, 0.2), 0.30000000000000004);
+    //     });
 
-        it("throws a message if numbers are negative", function(){
-            assertEqual(add(1, -5), "Sorry can't add negatives!");
-        });
+    //     it("throws a message if numbers are negative", function(){
+    //         assertEqual(add(1, -5), "Sorry can't add negatives!");
+    //     });
 
-        function assertEqual(actual, expected){
-            if (actual !== expected) throw new Error ("expected " + expected + ", but was " + actual);
-        }
+    //     function assertEqual(actual, expected){
+    //         if (actual !== expected) throw new Error ("expected " + expected + ", but was " + actual);
+    //     }
 
-    });
+    // });
 
-    function add(a, b) {
+    exports.add = function add(a, b) {
         if ( a > 0 && b > 0) {
         return a + b;
         }
@@ -31,8 +31,10 @@
         }
     }
 
+    // exports.add = add;
 
-})();
+
+// })();
 
     
     // var assert = require("chai").assert;
