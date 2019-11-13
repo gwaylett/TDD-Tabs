@@ -1,5 +1,5 @@
 // Copyright (c) 2015 Titanium I.T. LLC. All rights reserved. For license, see "README" or "LICENSE" file.
-/* globals jake:false, desc:false, task:false, complete:false, fail:false */
+/* globals jake:false, desc:false, task:false, complete:false, fail:false, directory:false */
 
 (function () {
 	"use strict";
@@ -28,9 +28,9 @@
 	task("run", ["build"], function () {
 		jake.exec("node node_modules/http-server/bin/http-server " + distDir, { interactive: true }, complete);
 		console.log("Running http server!!");
-	});
+	}, { async: true });
 
-	desc("Erase all generated fukes");
+	desc("Erase all generated files");
 	task("clean", function(){
 		console.log("Erasing generated files: .");
 		shell.rm("-rf", "generated");
@@ -84,7 +84,7 @@
 		shell.cp("src/content/*", distDir);
 
 		jake.exec("node node_modules/browserify/bin/cmd.js src/javascript/app.js -o " + distDir + "/bundle.js", {interactive:true}, complete);
-	});
+	}, { async: true });
 
 	directory(distDir);
 
