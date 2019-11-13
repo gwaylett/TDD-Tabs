@@ -21,21 +21,21 @@
 
     });
 
-    describe("Subtraction", function(){
-        it("substracts two positive numbers", function(){
+    describe("Subtraction", function () {
+        it("substracts two positive numbers", function () {
             assert.equal(arithmetic.subtract(10, 3), 7);
         });
     });
 
-    describe("Multiplication", function(){
-        it("multiplies two numbers", function(){
-           assert.equal(arithmetic.multiply(4, 6), 24);
+    describe("Multiplication", function () {
+        it("multiplies two numbers", function () {
+            assert.equal(arithmetic.multiply(4, 6), 24);
         });
     });
 
 
-    describe("Division", function(){
-        it("divides two positive numbers", function(){
+    describe("Division", function () {
+        it("divides two positive numbers", function () {
             assert.equal(arithmetic.divide(36, 6), 6);
         });
     });
