@@ -7,7 +7,7 @@
 	var semver = require("semver");
 	var jshint = require("simplebuild-jshint");
 	var karma = require("simplebuild-karma");
-	var shell = require("shell");
+	var shell = require("shelljs");
 	var karmaConfig = "karma.conf.js";
 	var distDir = "generated/dist";
 
