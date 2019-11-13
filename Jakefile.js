@@ -7,6 +7,7 @@
 	var semver = require("semver");
 	var jshint = require("simplebuild-jshint");
 	var karma = require("simplebuild-karma");
+	var shell = require("shell");
 	var karmaConfig = "karma.conf.js";
 	var distDir = "generated/dist";
 
@@ -32,6 +33,7 @@
 	desc("Erase all generated fukes");
 	task("clean", function(){
 		console.log("Erasing generated files: .");
+		shell.rm("-rf", "generated");
 	});
 
 
