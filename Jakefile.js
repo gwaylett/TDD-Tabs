@@ -78,7 +78,10 @@
 
 	desc("Build distribution directory:");
 	task("build", [distDir], function(){
-		console.log("Building distribution directory");
+		console.log("Building distribution directory .");
+
+		shell.rm("-rf", distDir + "/*");
+		shell.cp("src/index.html", distDir);
 	});
 
 	directory(distDir);
