@@ -82,6 +82,9 @@
 
 		shell.rm("-rf", distDir + "/*");
 		shell.cp("src/index.html", distDir);
+
+		jake.exec(
+			"node node_modules/browserify/bin/cmd.js src/app.js -o" + distDir + "/bundle.js", { interactive: true }, complete);
 	});
 
 	directory(distDir);
