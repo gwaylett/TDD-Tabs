@@ -8,6 +8,7 @@
 	var jshint = require("simplebuild-jshint");
 	var karma = require("simplebuild-karma");
 	var karmaConfig = "karma.conf.js";
+	var distDir = "generated/dist";
 
 	//**** General-purpose tasks
 	desc("Start the Karama server (run this first)");
@@ -23,9 +24,14 @@
 	});
 
 	desc("Run a localhost server");
-	task("run", function () {
-		jake.exec("node node_modules/http-server/bin/http-server src", { interactive: true }, complete);
+	task("run", ["build"], function () {
+		jake.exec("node node_modules/http-server/bin/http-server " + distDir, { interactive: true }, complete);
 		console.log("Running http server!!");
+	});
+
+	desc("Erase all generated fukes");
+	task("clean", function(){
+		console.log("Erasing generated files: .");
 	});
 
 
@@ -67,6 +73,13 @@
 			strict: !process.env.loose
 		}, complete, fail);
 	}, { async: true });
+
+	desc("Build distribution directory:");
+	task("build", [distDir], function(){
+		console.log("Building distribution directory");
+	});
+
+	directory(distDir);
 
 	function lintOptions() {
 		return {
