@@ -7,10 +7,10 @@
 
     describe("Tabs", function () {
 
-        it("hides an element", function () {  
+        it("sets a class on an element", function () {  
             var element = addElement(element);
-            tabs.initialize(element);
-            assert.equal(getDisplayProperty(element), "none");
+            tabs.initialize(element, "someClass");
+            assert.equal(getClass(element), "someClass");
             removeElement(element);
         });
 
@@ -20,14 +20,12 @@
             return element;
         }
 
-        function getDisplayProperty(element) {
-            var styles = getComputedStyle(element);
-            return styles.getPropertyValue("display");
-            
-        }
-
         function removeElement(element) {
             element.parentNode.removeChild(element);
+        }
+
+        function getClass(element){
+           return element.getAttribute("class");
         }
     });
 })();

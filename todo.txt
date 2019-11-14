@@ -1,4 +1,3 @@
 - mark a tab as active
 - hide all inactive content divs
     - hide one inactive content div
-    - hide one content div
