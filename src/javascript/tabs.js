@@ -1,8 +1,9 @@
-(function(){
+(function () {
     "use strict";
 
-    exports.initialize = function initialize(element, className){
-        shim();
-        element.classList.add(className);
+    exports.initialize = function initialize(elementList, className) {
+        elementList.forEach(function(element) {
+            element.classList.add(className);
+        });
     }
 })();
