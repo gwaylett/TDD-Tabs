@@ -9,42 +9,47 @@
 
         var container;
 
-        beforeEach(function(){
-            container = document.createElement("div");     
+        beforeEach(function () {
+            container = document.createElement("div");
             document.body.appendChild(container);
         });
 
-        afterEach(function(){
+        afterEach(function () {
             removeElement(container);
         })
 
-        it("hides an element by setting a class", function () {  
-            var element = addElement(element);
-            tabs.initialize([element], "someClass");
-            assert.equal(getClasses(element), "someClass");
-        });
-
-        it("hides multiple elements", function(){
+        it("hides multiple content elements except the default upon intitialization", function () {
             var element1 = addElement("div");
-            var element2 = addElement("div");
+            var defaultElement = addElement("div");
             var element3 = addElement("div");
 
-            tabs.initialize([element1, element2, element3], "hideClass");
+            tabs.initialize({
+                content: [element1, defaultElement, element3],
+                default: defaultElement,
+                contentHideClass: "hideClass"
+            });
 
-            assert.equal(getClasses(element1), "hideClass", "element1");
-            assert.equal(getClasses(element2), "hideClass", "element2");
-            assert.equal(getClasses(element3), "hideClass", "element3");
-        }); 
+            assert.equal(getClasses(element1), "hideClass", "element1 should be hidden");
+            assert.equal(getClasses(defaultElement), "", "defaultElement shouldn't be hidden");
+            assert.equal(getClasses(element3), "hideClass", "element3 should be hidden");
+        });
 
-        it("preserves existing classes when hiding an element.", function(){
-            var element = addElement(element);
-            element.setAttribute("class", "existingClass");
-            tabs.initialize([element], "newClass");
-            assert.equal(getClasses(element), "existingClass newClass");
-        });      
+        it("preserves existing classes when hiding an element.", function () {
+            var defaultElement = addElement("div");
+            var hiddenElement = addElement("div");
+            hiddenElement.setAttribute("class", "existingClass");
+            tabs.initialize({
+                content: [defaultElement, hiddenElement],
+                default: defaultElement,
+                contentHideClass: "newClass"
+            });
+
+            assert.equal(getClasses(hiddenElement), "existingClass newClass");
+        });
+
 
         function addElement(tagName) {
-            var element = document.createElement(tagName);     
+            var element = document.createElement(tagName);
             container.appendChild(element);
             return element;
         }
@@ -53,8 +58,8 @@
             element.parentNode.removeChild(element);
         }
 
-        function getClasses(element){
-           return element.getAttribute("class");
+        function getClasses(element) {
+            return element.getAttribute("class");
         }
     });
 })();
