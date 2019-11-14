@@ -2,7 +2,7 @@
     "use strict";
 
     exports.initialize = function initialize(element, className){
-        element.setAttribute("class", className);
-    };
-
+        shim();
+        element.classList.add(className);
+    }
 })();
