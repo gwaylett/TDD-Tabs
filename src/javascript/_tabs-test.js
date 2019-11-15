@@ -16,16 +16,22 @@
 
         afterEach(function () {
             removeElement(container);
-        })
+        });
 
-        it("hides multiple content elements except the default upon intitialization", function () {
+        it("hides all content elements except the default upon intitialization", function () {
+            var tab1 = addElement("div");
+            var defaultTab = addElement("div");
+            var tab3 = addElement("div");
+
             var element1 = addElement("div");
             var defaultElement = addElement("div");
             var element3 = addElement("div");
 
             tabs.initialize({
+                tabs: [tab1, defaultTab, tab3],
                 content: [element1, defaultElement, element3],
                 default: defaultElement,
+                activeTabClass: "activeTab",
                 contentHideClass: "hideClass"
             });
 
@@ -35,16 +41,40 @@
         });
 
         it("preserves existing classes when hiding an element.", function () {
+            var defaultTab = addElement("div");
+            var hiddenTab = addElement("div");
+
             var defaultElement = addElement("div");
             var hiddenElement = addElement("div");
             hiddenElement.setAttribute("class", "existingClass");
             tabs.initialize({
+                tabs: [defaultTab, hiddenTab],
                 content: [defaultElement, hiddenElement],
                 default: defaultElement,
+                activeTabClass: "activeTab",
                 contentHideClass: "newClass"
             });
 
             assert.equal(getClasses(hiddenElement), "existingClass newClass");
+        });
+
+        it("styles the default tab with a class", function(){
+            var defaultTab = addElement("div");
+            var defaultElement = addElement("div");
+
+            tabs.initialize({
+                tabs: [defaultTab],
+                content: [defaultElement],
+                default: defaultElement,
+                activeTabClass: "activeTab",
+                contentHideClass: "ignored"
+            });
+
+            assert.equal(getClasses(defaultTab), "activeTab");
+        });
+
+        it("preserves existing classes on the active tab", function(){
+            //TODO
         });
 
 
