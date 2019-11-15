@@ -9,6 +9,7 @@
 
         var IRRELEVENT = "irrelevant";
         var HIDDEN_CONTENT = "hideClass";
+        var ACTIVE_TAB = "activeClass"
         var container;
 
         beforeEach(function () {
@@ -35,8 +36,8 @@
                 hiddenContentClass: HIDDEN_CONTENT
             });
 
-            assertContentHidden(content1, "element 1");   
-            assertContentVisible(defaultContent, "default element");          
+            assertContentHidden(content1, "element 1");
+            assertContentVisible(defaultContent, "default element");
             assertContentHidden(content3, "element 3");
         });
 
@@ -52,16 +53,16 @@
                 tabs: [tab1, defaultTab, tab3],
                 content: [createTabContent(), defaultContent, createTabContent()],
                 defaultTab: defaultTab,
-                activeTabClass: "activeTab",
+                activeTabClass: ACTIVE_TAB,
                 hiddenContentClass: IRRELEVENT
             });
 
-            assert.equal(getClasses(tab1), null, "tab1 should not be styled");
-            assert.equal(getClasses(defaultTab), "activeTab", "defaultElement should be styled");
-            assert.equal(getClasses(tab3), null, "tab3 should not be styled");
-        });
+            assertTabInactive(tab1, "tab 1");
+            assertTabActive(defaultTab, "default tab");
+            assertTabInactive(tab3, "tab 3");
+        });       
 
-        it("switch content when tab is clicked", function(){
+        it("switch content when tab is clicked", function () {
             var tab1 = createTab();
             var tab2 = createTab();
             var tab3 = createTab();
@@ -75,13 +76,13 @@
                 content: [content1, content2, content3],
                 defaultTab: tab1,
                 activeTabClass: "activeTab",
-                hiddenContentClass: HIDDEN_CONTENT 
+                hiddenContentClass: HIDDEN_CONTENT
             });
 
             assert.equal();
             assert.equal();
             assert.equal();
-            
+
             assert.equal();
             assert.equal();
 
@@ -108,12 +109,21 @@
         });
 
 
-        function assertContentHidden(element, elementName){
-            assert.equal(getClasses(element), HIDDEN_CONTENT,  elementName + " should be hidden");
+
+        function assertTabActive(element, elementName) {
+            assert.equal(getClasses(element), ACTIVE_TAB, elementName + " should be active");
         }
 
-        function assertContentVisible(element, elementName){
-            assert.equal(getClasses(element), "",  elementName + " defaultElement shouldn't be hidden");
+        function assertTabInactive(element, elementName){
+            assert.equal(getClasses(element), null, elementName + " should be inactive");
+        }
+
+        function assertContentHidden(element, elementName) {
+            assert.equal(getClasses(element), HIDDEN_CONTENT, elementName + " should be hidden");
+        }
+
+        function assertContentVisible(element, elementName) {
+            assert.equal(getClasses(element), "", elementName + " defaultElement shouldn't be hidden");
         }
 
         function getClasses(element) {
