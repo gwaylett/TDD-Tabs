@@ -83,7 +83,7 @@
 		shell.rm("-rf", distDir + "/*");
 		shell.cp("src/content/*", distDir);
 
-		jake.exec("node node_modules/browserify/bin/cmd.js src/javascript/app.js -o " + distDir + "/bundle.js", {interactive:true}, complete);
+		jake.exec("node node_modules/browserify/bin/cmd.js -r ./src/javascript/tabs.js:tabs -o " + distDir + "/bundle.js", {interactive:true}, complete);
 	}, { async: true });
 
 	directory(distDir);
