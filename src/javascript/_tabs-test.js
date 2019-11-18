@@ -9,7 +9,7 @@
 
         var IRRELEVENT = "irrelevant";
         var HIDDEN_CONTENT = "hideClass";
-        var ACTIVE_TAB = "activeClass"
+        var ACTIVE_TAB = "activeClass";
         var container;
 
         beforeEach(function () {
@@ -52,7 +52,7 @@
             var defaultTab = createTab();
             var tab3 = createTab();
 
-            var defaultTab = createTab();
+
             var defaultContent = createTabContent();
 
             tabs.initialize({
