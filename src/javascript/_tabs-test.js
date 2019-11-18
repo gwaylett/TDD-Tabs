@@ -101,7 +101,24 @@
 
         });
 
+        if("handles clicks of sub-elements within tabs", function() {
+            var defaultTab = createTab();
 
+            var complexTab = addElement("div");
+            complexTab.innerHTML = "<a id='link'>link</a>";
+            var link = document.getElementById("link");
+
+            tabs.initialize({
+                tabs: [defaultTab, complexTab],
+                content: [createTabContent(), createTabContent()],
+                defaultTab: defaultTab,
+                activeTabClass: ACTIVE_TAB,
+                hiddenContentClass: IRRELEVENT
+            });
+
+            link.click();
+            assertTabActive(complexTab);
+        });
 
 
 
